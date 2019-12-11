@@ -11,3 +11,6 @@ def get_agents():
         print(type(data))
         return data
 
+
+get_agents()
+
