@@ -66,11 +66,11 @@ def calculate_best_routes(start, finish, listOfAgents):
         requestStr += TOM_TOM_API_KEY
         # print ("Request: ", requestStr)
         response = requests.get(requestStr)
-        jsonResponces.append(response.content)
+        jsonResponces.append(json.loads(response.content.decode("utf-8")))
         # print (response.content)
 
     # return list with best routes in JSON. 
-    return jsonResponces
+    return json.dumps(jsonResponces)
 
 
 def parse_agents(data):

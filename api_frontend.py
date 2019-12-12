@@ -16,7 +16,9 @@ def get_routes():
     pickup_point = Location(pickup_coords[0], pickup_coords[1])
     dest_point = Location(dest_coords[0], dest_coords[1])
 
-    return str(get_best_routes(pickup_point, dest_point))
+    result_string = str(get_best_routes(pickup_point, dest_point))
+
+    return result_string
 
 
 if __name__ == '__main__':
