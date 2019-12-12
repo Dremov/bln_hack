@@ -120,12 +120,12 @@ finishLocation = Location(52.506321, 13.277549)  # fake Brandenburg Tor
 
 
 # 3. calculate best routes
-def get_best_routes():
-    best_routes = calculate_best_routes(startLocation, finishLocation, freeAgents)
+def get_best_routes(pickup_point, dest_point):
+    best_routes = calculate_best_routes(pickup_point, dest_point, freeAgents)
     return best_routes
 
 
 # TODO  provide best rotes to frontend
 mockAgents = requests.get("http://mockbcknd.tk/")
 # print(mockAgents.content)
-print(get_best_routes())
+print(get_best_routes(startLocation, finishLocation))

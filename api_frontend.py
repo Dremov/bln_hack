@@ -1,11 +1,6 @@
 from flask import Flask, request
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine
-from delivery import get_best_routes
-from api_processing_lambda import get_agents
-
-import requests
-import json
+from flask_restful import Api
+from delivery import get_best_routes, Location
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,13 +10,13 @@ MOCK_AGENT_URL = 'http://mockbcknd.tk/'
 
 @app.route('/get_routes')
 def get_routes():
-    pickup_point = request.args['pickup_point']
-    dest_point = request.args['dest_point']
+    pickup_coords = request.args['pickup_point'].split(',')
+    dest_coords = request.args['dest_point'].split(',')
 
-    # print(get_routes())
-    # print('yo')
+    pickup_point = Location(pickup_coords[0], pickup_coords[1])
+    dest_point = Location(dest_coords[0], dest_coords[1])
 
-    return str(json.loads(get_best_routes()))
+    return str(get_best_routes(pickup_point, dest_point))
 
 
 if __name__ == '__main__':
